@@ -1,0 +1,47 @@
+<!DOCTYPE html>  
+{% load staticfiles %}
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>注册</title>  
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nprogress.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css'%}"/>
+     <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+    <script src="{% static 'js/nprogress.js' %}"></script>
+    <script src="{% static 'js/jquery.lazyload.min.js' %}"></script>
+    <script src="{% static 'js/Validform.js' %}"></script>
+</head>  
+<body>  
+    <div id="login">  
+        <h1>注册{% if msg %}
+            {{ msg }}
+        {% endif %}</h1>
+
+        <form method="post" action="{% url 'register' %}" onsubmit="return check()">
+          {% csrf_token %}
+            <!-- onblur 事件处理程序:当元素或窗口失去焦点时触发该事件 -->
+ <!-- onchange事件处理程序:当表单元素获取焦点，并且内容发生改变时，触发该事件 -->
+ <!-- 以下同理 -->
+             <!-- <label for="exampleInputName">用户名</label> -->
+            <!-- <input type="text" class="form-control" required="required" placeholder="用户名" aria-describedby="sizing-addon1"> -->
+               <!-- <label for="exampleInputPassword1">密码</label> -->
+            <!-- <input type="text" class="form-control" required="required" placeholder="密码" aria-describedby="sizing-addon1"> -->
+            <input type="text" required="required" placeholder="请输入邮箱" name="email" id="email" onchange="checkemail()"></input><span id="email-error" class="abs">{% if email_msg %}{{ email_msg }}{% endif %}</span>
+            <input type="text" required="required" placeholder="用户名由6-18位字符组成" name="username" id="username" maxlength="18" onchange="checkuse()"></input><span class="abs" id="checktext1">{% if email_msg %}{{ email_msg }}{% endif %}</span>
+            <input type="password" required="required" placeholder="密码由6-18位字符组成，且必须包含字母、数字和标点符号" name="password" id="password" onchange="checkpwd()"></input><span class="abs" id="checktext2">{% if pwd_msg %}{{ pwd_msg }}{% endif %}</span>
+            <input type="password" required="required" placeholder="请再次输入你的密码" name="password1" id="password1" onchange="checkpwdc()"></input>  <span  class="abs" id="checktext3">{% if pwd_msg %}{{ pwd_msg }}{% endif %}</span>
+              <!-- <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button> -->
+            {% for for in register_form %}
+            <spa>{{ register_form.errors }} </spa>
+            {% endfor %}
+
+
+            <button class="but" type="submit">注册</button>
+        </form>  
+
+    </div>  
+</body>  
+</html>  

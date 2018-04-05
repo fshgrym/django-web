@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block container %}
+<section class="container">
+<div class="panel">
+<div class="text-center">
+  <h2><stong>500服务器内部错误</stong></h2>
+	<div class="padding-big"> <a href="{% url 'index' %}" class="btn btn-primary" draggable="false">返回首页</a>
+	</div>
+{#	<div class="padding-big"> <a href="#" title="用DTcms做一个独立博客网站（响应式模板）" draggable="false">用DTcms做一个独立博客网站（响应式模板）</a>#}
+{#	</div>#}
+{#	<div class="padding-big"> <a href="#" title="MZ-NetBolg主题" draggable="false">MZ-NetBolg主题栏目</a>#}
+{#	</div>#}
+</div>
+</div>
+</section>
+{% endblock %}
+{% block title %}500{% endblock %}

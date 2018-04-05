@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load blog_tags %}
+{% block title %}
+<title>{{ tag }}</title>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+  <div class="title">
+	<h3 style="line-height: 1.3">{% if keyword %}当前全文搜索关键字为：{{ keyword }}{% else %}{{ tag }}{% endif %}</h3>
+  </div>
+
+  {% for article in all_article.object_list %}
+            <article class="excerpt excerpt-{{ article.id }}" style="">
+                <a class="focus" href="{% url 'post' article.id %}" title="{{ article.title }}" target="_blank"><img class="thumb"
+                                                                                           data-original="{{ MEDIA_URL }}{{ article.image }}"
+                                                                                           src="{{ MEDIA_URL }}{{ article.image }}"
+                                                                                           alt="{{ article.title }}"
+                                                                                           style="display: inline;"></a>
+                <header><a class="cat" href="{% url 'category' article.category.id %}" title="{{ article.category }}">{{ article.category }}<i></i></a>
+                    <h2><a href="{% url 'post' article.id %}" title="{{ article.title }}"
+                           target="_blank">{{ article.title }}</a>
+                    </h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i> {{ article.create_time }}</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> {{ article.view }}</span>
+                    <a class="comment"
+                       href="##comment"
+                       title="评论"
+                       target="_blank"><i
+                            class="glyphicon glyphicon-comment"></i> 4</a>
+                </p>
+                <p class="note">{{ article.excerpt }}</p>
+            </article>
+        {% empty %}
+           	暂时没有文章
+        {% endfor %}
+
+        <nav class="pagination">
+            <ul>
+
+                <li class="prev-page"></li>
+                {% for page in all_article.pages %}
+                    {% if page %}
+                            {% ifequal page all_article.number %}
+                            <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+
+                        {% else %}
+                        <li><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                    {% endifequal %}
+                        {% else %}
+                         <li><a href="" class="none">...</a></li>
+                    {% endif %}
+{#                    <li class="active"><span></span></li>#}
+
+                {% endfor %}
+                {% if all_article.has_next %}
+                    <li class="next-page"><a href="?{{ all_article.next_page_number.querystring }}">下一页</a></li>
+                {% endif %}
+
+
+            </ul>
+        </nav>
+</div>
+{% endblock %}

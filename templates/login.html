@@ -1,0 +1,35 @@
+<!DOCTYPE html>  
+{% load staticfiles %}
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>登陆</title>  
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nprogress.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}"/>  
+     <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+    <script src="{% static 'js/nprogress.js' %}"></script>
+    <script src="{% static 'js/jquery.lazyload.min.js' %}"></script>
+</head>  
+<body>  
+    <div id="login">  
+        <h1>登陆</h1>  
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+             <!-- <label for="exampleInputName">用户名</label> -->
+            <!-- <input type="text" class="form-control" required="required" placeholder="用户名" aria-describedby="sizing-addon1"> -->
+               <!-- <label for="exampleInputPassword1">密码</label> -->
+            <!-- <input type="text" class="form-control" required="required" placeholder="密码" aria-describedby="sizing-addon1"> -->
+            <input type="text" required="required" placeholder="用户名" name="username"></input>
+            <input type="password" required="required" placeholder="密码" name="password"></input>
+             <a href="" id='wd'>忘记密码</a>
+              <a href="{% url 'register' %}" id='re'>注册</a>
+              <!-- <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button> -->
+            <button class="but" type="submit">登录</button>  
+        </form>  
+
+    </div>  
+</body>  
+</html>  
