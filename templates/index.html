@@ -42,7 +42,7 @@
 
             {% for related in related_article %}
         <article class="excerpt-minic excerpt-minic-index">
-            <h2><span class="red">【推荐】</span><a target="_blank" href="#" title="{{ related.title }}">{{ related.title }}</a>
+            <h2><span class="red">【推荐】</span><a target="_blank" href="{% url 'post' related.id %}" title="{{ related.title }}">{{ related.title }}</a>
             </h2>
             <p class="note">{{ related.excerpt }}</p>
         </article>
@@ -53,11 +53,11 @@
             <h3>最新发布</h3>
             <div class="more">
 
-                <a href="#" title="MZ-NetBlog主题">MZ-NetBlog主题</a>
-                <a href="#" title="IT技术笔记">IT技术笔记</a>
-                <a href="#" title="源码分享">源码分享</a>
-                <a href="#" title="靠谱网赚">靠谱网赚</a>
-                <a href="#" title="资讯分享">资讯分享</a>
+               {% for tab_category in is_tab %}
+               <a href="{% url 'category' tab_category.id %}" title="{{ tab_category.name }}">{{ tab_category.name }}</a>
+               {% endfor %}
+
+
             </div>
         </div>
 
